@@ -1,44 +1,52 @@
 package com.example.demo;
 
+import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Key;
+import com.vaadin.flow.component.applayout.AppLayout;
+import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.Paragraph;
+import com.vaadin.flow.component.orderedlayout.FlexComponent;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.router.Router;
+import com.vaadin.flow.router.RouterLink;
+import com.vaadin.flow.theme.lumo.LumoUtility;
 
 /**
  * The main view contains a button and a click listener.
  */
 @Route("")
-public class MainView extends VerticalLayout {
+public class MainView extends AppLayout {
 
     public MainView() {
-        // Use TextField for standard text input
-        TextField textField = new TextField("Your name");
-        Grid<String> grid = new Grid<>();
+        createHeader();
+    }
 
-        // Button click listeners can be defined as lambda expressions
-        GreetService greetService = new GreetService();
-        Button button = new Button("Say hello", e ->  {
-            add(new Paragraph(greetService.greet(textField.getValue())));
-        });
+    private void createHeader() {
+        H1 brand = new H1("Photo-Co");
+        brand.addClassNames(
+                LumoUtility.FontSize.XLARGE,
+                LumoUtility.Margin.SMALL
+        );
 
-        // Theme variants give you predefined extra styles for components.
-        // Example: Primary button is more prominent look.
-        button.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+        HorizontalLayout header = new HorizontalLayout(new DrawerToggle(), brand);
+        header.setDefaultVerticalComponentAlignment(FlexComponent.Alignment.CENTER);
+        header.expand(brand);
+        header.setWidthFull();
+        header.setSpacing(false);
+        addToNavbar(header);
+    }
 
-        // You can specify keyboard shortcuts for buttons.
-        // Example: Pressing enter in this view clicks the Button.
-        button.addClickShortcut(Key.ENTER);
-
-
-
-        // Use custom CSS classes to apply styling. This is defined in shared-styles.css.
-        addClassName("centered-content");
-
-        add(textField, button);
+    private void createDrawer() {
+        addToDrawer(new VerticalLayout(
+//                new RouterLink("About", )
+        ));
     }
 }
+
