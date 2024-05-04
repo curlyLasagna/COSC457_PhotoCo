@@ -1,7 +1,10 @@
 package com.example.demo.data;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
 @Entity
+@Table(name = "CUSTOMER")
 public class Customer extends AbstractEntity {
 
     public String getfName() {
