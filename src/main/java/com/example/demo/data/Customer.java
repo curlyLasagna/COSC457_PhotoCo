@@ -1,11 +1,11 @@
 package com.example.demo.data;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 
 @Entity
 @Table(name = "CUSTOMER")
-public class Customer extends AbstractEntity {
+public class Customer{
 
     public String getfName() {
         return fName;
@@ -39,9 +39,25 @@ public class Customer extends AbstractEntity {
         return phone_number;
     }
 
+    public Integer getCustomer_id() {
+        return customer_id;
+    }
+
+    @Id
+    @GeneratedValue
+    @Column(name = "customer_id")
+    private Integer customer_id;
+    @Column(name = "fName")
     private String fName;
+
+    @Column(name = "lName")
     private String lName;
+
+    @Email
+    @Column(name = "email")
     private String email;
+
+    @Column(name = "phone_num")
     private String phone_number;
 
 

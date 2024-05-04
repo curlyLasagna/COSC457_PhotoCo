@@ -2,6 +2,7 @@ package com.example.demo.views;
 
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLink;
@@ -25,9 +26,9 @@ public class MainView extends AppLayout {
                 LumoUtility.Margin.SMALL,
                 LumoUtility.Position.ABSOLUTE
         );
-
+        var brand_logo = new Image("/resources/brand_logo.svg", "");
         HorizontalLayout navbar = getNavigation();
-        addToNavbar(brand, navbar);
+        addToNavbar(brand, brand_logo, navbar);
     }
 
     private HorizontalLayout getNavigation() {

@@ -21,13 +21,19 @@ public class CustomerView extends VerticalLayout {
 
     public CustomerView (CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
+
         Grid<Customer> customer_grid = new Grid<>(Customer.class);
 
 
-        var customer_list = new VerticalLayout();
+        var customer_list = new HorizontalLayout();
         customer_list.setPadding(false);
-        customerRepository.findAll().forEach(customer -> customer_list.add(new H3(customer.getEmail())));
-        customer_list.add(new H3("What the fuck"));
+        customerRepository.findAll().forEach(
+                (customer) -> {
+                    String full_name = customer.getfName() + " " + customer.getlName();
+                    customer_list.add(new CardComponent(full_name, customer.getEmail(), ""));
+
+        });
+
         add(customer_list);
     }
 
