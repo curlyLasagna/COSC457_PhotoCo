@@ -4,6 +4,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
 
+import java.util.Objects;
+
 @MappedSuperclass
 public class AbstractEntity {
     public void setId(Integer id) {
@@ -20,10 +22,7 @@ public class AbstractEntity {
 
     @Override
     public int hashCode() {
-        if (getId() != null) {
-            return getId().hashCode();
-        }
-        return super.hashCode();
+        return Objects.hash(id);
     }
 
     @Override

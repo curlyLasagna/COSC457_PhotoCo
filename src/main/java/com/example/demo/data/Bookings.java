@@ -56,10 +56,16 @@ public class Bookings extends AbstractEntity {
     @Enumerated(EnumType.STRING)
     private Status status;
 
+    public Priority getPriority() {
+        return priority;
+    }
+
+    public void setPriority(Priority priority) {
+        this.priority = priority;
+    }
+
     @Column(name = "priority")
     @Enumerated(EnumType.STRING)
     private Priority priority;
 
-//    @Query("Select fName, lName from BOOKINGS join CUSTOMER on")
-//    public List<Customer> findCustomerName_Id(Integer id);
 }

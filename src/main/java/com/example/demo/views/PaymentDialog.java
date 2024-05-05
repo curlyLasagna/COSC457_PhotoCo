@@ -1,15 +1,30 @@
 package com.example.demo.views;
 
-
+import com.vaadin.flow.component.datepicker.DatePicker;
 import com.vaadin.flow.component.dialog.Dialog;
-import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.formlayout.FormLayout;
+import com.vaadin.flow.component.html.H2;
+import com.vaadin.flow.component.html.H3;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 
-public class PaymentDialog extends Div {
+public class PaymentDialog extends Dialog {
     public PaymentDialog() {
-        Dialog dialog = new Dialog();
-        VerticalLayout dialogLayout = createDialogLayout(dialog);
+        new H2("Pay with debit or credit card");
+        setSizeFull();
+        new H3("Payment Information");
+        TextField cardNumberField = new TextField("Card Number");
+        add(cardNumberField);
+
+        HorizontalLayout expirationLayout = new HorizontalLayout();
+        DatePicker expirationDatePicker = new DatePicker("Expiration Date");
+        expirationDatePicker.setPlaceholder("MM/YY");
+        expirationLayout.add(expirationDatePicker);
+
+        TextField cvvField = new TextField("CVV");
+        cvvField.setMaxLength(3);
+        expirationLayout.add(cvvField);
+        add(expirationLayout);
     }
 
 //    private VerticalLayout createDialogLayout(Dialog dialog) {

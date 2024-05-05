@@ -20,9 +20,12 @@ public class MainLayout extends AppLayout {
                 LumoUtility.Margin.SMALL,
                 LumoUtility.Position.ABSOLUTE
         );
+        RouterLink link = new RouterLink();
+        link.add(brand);
+        link.setRoute(DashboardView.class);
         var brand_logo = new Image("/resources/brand_logo.svg", "");
         HorizontalLayout navbar = getNavigation();
-        addToNavbar(brand, brand_logo, navbar);
+        addToNavbar(link, brand_logo, navbar);
     }
 
     private HorizontalLayout getNavigation() {
