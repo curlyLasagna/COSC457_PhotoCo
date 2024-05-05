@@ -1,23 +1,39 @@
 package com.example.demo.data;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.Date;
 
 @Entity
-public class Bookings extends AbstractEntity{
+@Table(name = "BOOKINGS")
+public class Bookings extends AbstractEntity {
+    public enum Priority {low, medium, high}
 
-    private Date date;
-    private String notes;
+    public enum Status {Pending, WIP, Done}
 
-    public Date getDate() {
-        return date;
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
+
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    @Column(name = "last_active")
+    private Date last_active;
+    @Column(name = "notes")
+    private String notes;
+
+    public Date getLast_active() {
+        return last_active;
+    }
+
+    public void setLast_active(Date last_active) {
+        this.last_active = last_active;
     }
 
     public String getNotes() {
@@ -28,23 +44,22 @@ public class Bookings extends AbstractEntity{
         this.notes = notes;
     }
 
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 
-    public Date getLast_active() {
-        return last_active;
-    }
+    @Column(name = "status")
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
-    public void setLast_active(Date last_active) {
-        this.last_active = last_active;
-    }
+    @Column(name = "priority")
+    @Enumerated(EnumType.STRING)
+    private Priority priority;
 
-    private String status;
-    private Date last_active;
-    private enum priority {a, b, c};
+//    @Query("Select fName, lName from BOOKINGS join CUSTOMER on")
+//    public List<Customer> findCustomerName_Id(Integer id);
 }

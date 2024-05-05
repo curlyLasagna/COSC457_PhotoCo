@@ -1,4 +1,7 @@
 package com.example.demo.data;
 
-public class Product {
+import jakarta.persistence.Entity;
+
+@Entity
+public class Product extends AbstractEntity {
 }

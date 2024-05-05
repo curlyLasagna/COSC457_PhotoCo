@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 @Entity
 public class Qoutes extends AbstractEntity{
 
-    @OneToMany
+    @ManyToOne
     @JoinColumn(name = "paymend_id")
     private Payments payment;
 

@@ -4,17 +4,11 @@ import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
-import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.theme.lumo.LumoUtility;
 
-/**
- * The main view contains a button and a click listener.
- */
-@Route("")
-public class MainView extends AppLayout {
-
-    public MainView() {
+public class MainLayout extends AppLayout {
+    public MainLayout() {
         createHeader();
     }
 
@@ -57,5 +51,5 @@ public class MainView extends AppLayout {
 
         return link;
     }
-}
 
+}

@@ -5,7 +5,7 @@ import jakarta.validation.constraints.Email;
 
 @Entity
 @Table(name = "CUSTOMER")
-public class Customer{
+public class Customer extends AbstractEntity {
 
     public String getfName() {
         return fName;
@@ -39,14 +39,7 @@ public class Customer{
         return phone_number;
     }
 
-    public Integer getCustomer_id() {
-        return customer_id;
-    }
 
-    @Id
-    @GeneratedValue
-    @Column(name = "customer_id")
-    private Integer customer_id;
     @Column(name = "fName")
     private String fName;
 

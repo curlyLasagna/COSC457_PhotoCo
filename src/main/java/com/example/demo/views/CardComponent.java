@@ -1,6 +1,7 @@
 package com.example.demo.views;
 
 
+import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -12,7 +13,7 @@ public class CardComponent extends VerticalLayout {
         // Set card properties
         addClassName("card");
         setWidth("300px");
-        setAlignItems(Alignment.CENTER);
+        setAlignItems(Alignment.START);
         setPadding(true);
         setSpacing(true);
 
@@ -21,9 +22,7 @@ public class CardComponent extends VerticalLayout {
         title.setText(titleText);
 
         // Description
-        var description = new Paragraph();
-        description.setText(descriptionText);
-        description.addClassNames("text-s", "m-s");
+        var description = new Text(descriptionText);
 
         // Image
         var image = new Image();
