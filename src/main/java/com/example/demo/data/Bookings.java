@@ -68,4 +68,15 @@ public class Bookings extends AbstractEntity {
     @Enumerated(EnumType.STRING)
     private Priority priority;
 
+    public Date getShoot_date() {
+        return shoot_date;
+    }
+
+    public void setShoot_date(Date shoot_date) {
+        this.shoot_date = shoot_date;
+    }
+
+    @Column(name = "shoot_date")
+    private Date shoot_date;
+
 }

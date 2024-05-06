@@ -28,4 +28,12 @@ public class CRMService {
     public List<Bookings> getAllBookings() {
         return bookingsRepository.findAll();
     }
+
+    public void saveCustomer(Customer customer) {
+        customerRepository.save(customer);
+    }
+
+    public void deleteBooking(Bookings bookings) {
+        bookingsRepository.delete(bookings);
+    }
 }

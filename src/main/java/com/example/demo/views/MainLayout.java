@@ -1,8 +1,11 @@
 package com.example.demo.views;
 
+import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.html.H4;
 import com.vaadin.flow.component.html.Image;
+import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.theme.lumo.LumoUtility;
@@ -14,18 +17,19 @@ public class MainLayout extends AppLayout {
 
     private void createHeader() {
 
-        H1 brand = new H1("Photo-Co");
-        brand.addClassNames(
-                LumoUtility.FontSize.MEDIUM,
+        H4 brand = new H4("Photo-Co");
+        RouterLink home = new RouterLink();
+        Icon icon = new Icon("vaadin", "camera");
+        home.add(brand, icon);
+        home.setRoute(DashboardView.class);
+        home.addClassNames(
+                LumoUtility.FontSize.XSMALL,
                 LumoUtility.Margin.SMALL,
-                LumoUtility.Position.ABSOLUTE
+                LumoUtility.AlignItems.STRETCH,
+                LumoUtility.Position.RELATIVE
         );
-        RouterLink link = new RouterLink();
-        link.add(brand);
-        link.setRoute(DashboardView.class);
-        var brand_logo = new Image("/resources/brand_logo.svg", "");
         HorizontalLayout navbar = getNavigation();
-        addToNavbar(link, brand_logo, navbar);
+        addToNavbar(home, navbar);
     }
 
     private HorizontalLayout getNavigation() {

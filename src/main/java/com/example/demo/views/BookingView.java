@@ -1,20 +1,28 @@
 package com.example.demo.views;
 
+import com.example.demo.data.Bookings;
+import com.example.demo.data.Customer;
+import com.example.demo.services.CRMService;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.datepicker.DatePicker;
-import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.EmailField;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.data.binder.BeanValidationBinder;
+import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.router.Route;
+
 
 @Route(value = "/book")
 public class BookingView extends VerticalLayout {
-    PaymentDialog dialog = new PaymentDialog();
+    Binder<Customer> binder = new BeanValidationBinder<>(Customer.class);
+    CRMService service;
 
-    public BookingView() {
+    public BookingView(CRMService service) {
+        this.service = service;
+
         VerticalLayout contentLayout = new VerticalLayout();
         HorizontalLayout centeringLayout = new HorizontalLayout();
         TextField fName = new TextField("First Name");
@@ -43,15 +51,16 @@ public class BookingView extends VerticalLayout {
         centeringLayout.getStyle().set("justify-content", "center")
                 .set("width", "50%").set("border", "2px").set("margin", "0 auto");
 
-        getStyle().set("height", "100vh")
-                .set("display", "flex")
-                .set("align-items", "center");
 
         setAlignItems(Alignment.STRETCH);
         setMargin(true);
         setPadding(true);
-        setWidth("stretch");
         add(centeringLayout);
+    }
+
+    private void saveCustomer() {
+        Customer customer = new Customer();
+        service.saveCustomer(customer);
     }
 }
 

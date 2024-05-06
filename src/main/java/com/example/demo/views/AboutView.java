@@ -6,5 +6,7 @@ import com.vaadin.flow.router.Route;
 
 @Route(value = "/about", layout = MainLayout.class)
 public class AboutView extends VerticalLayout {
+    public AboutView() {
 
+    }
 }

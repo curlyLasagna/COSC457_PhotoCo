@@ -20,10 +20,7 @@ public class CustomerView extends VerticalLayout {
     public CustomerView(CRMService customerRepository) {
         this.customerRepository = customerRepository;
 
-        Grid<Customer> customer_grid = new Grid<>(Customer.class);
-
-
-        var customer_list = new HorizontalLayout();
+        var customer_list = new VerticalLayout();
         customer_list.setPadding(false);
         customerRepository.getAllCustomers().forEach(
                 (customer) -> {
